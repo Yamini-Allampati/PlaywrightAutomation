@@ -1,0 +1,55 @@
+# --- Step 1: Start your day on your feature branch ---
+git checkout feature
+git pull origin feature        # sync your local feature with remote
+
+# --- Step 2: Do your coding work ---
+# make changes in files
+git add .
+git commit -m "your changes"
+
+# --- Step 3: Bring in updates from main ---
+git pull origin main           # fetch + merge latest main into feature
+# resolve conflicts if any
+git add .
+git commit -m "resolved conflicts with main"
+
+# --- Step 4: Push your feature branch ---
+git push origin feature        # update remote feature branch
+
+# --- Step 5: Merge feature back into main (when stable) ---
+git checkout main
+git pull origin main           # make sure local main is up-to-date
+git merge feature              # bring in your tested feature work
+git push origin main           # update remote main
+
+
+//project workflow
+# --- Step 1: Start your day on your personal branch ---
+git checkout feature/yamini
+git pull origin feature/yamini        # sync your local branch with remote
+
+# --- Step 2: Do your coding work ---
+# make changes in files
+git add .
+git commit -m "your changes"
+
+# --- Step 3: Bring in updates from common branch ---
+git pull origin feature/common        # fetch + merge latest common into your branch
+# resolve conflicts if any
+git add .
+git commit -m "resolved conflicts with common"
+
+# --- Step 4: Push your personal branch ---
+git push origin feature/yamini        # update remote personal branch
+
+# --- Step 5: Merge your branch into common (integration) ---
+git checkout feature/common
+git pull origin feature/common        # make sure local common is up-to-date
+git merge feature/yamini              # bring in your tested work
+git push origin feature/common        # update remote common
+
+# --- Step 6: Merge common into main (final stage, only when stable) ---
+git checkout main
+git pull origin main                  # make sure local main is up-to-date
+git merge feature/common              # bring in all integrated work
+git push origin main                  # update remote main
